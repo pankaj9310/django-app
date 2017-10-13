@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p><b>Project Name: </b>{{ object.name }}</p>
+<p><b>Porject Type:</b>{{ object.project_type }}
+<p><b>Project Details: </b>{{ object.description }}</p>
+<a class="nav-link" href="{% url 'add_task' pk=object.id %}">Add Task</a>
+<table class="tasks table table-striped">
+    <thead class="thead-inverse">
+	<tr>
+	    <th>Name</th>
+	    <th>Description</th>
+	    <th>Task Type</th>
+	    <th>Status</th>
+	    <th>Priority</th>
+	    <th>View</th>
+	    <th>Edit</th>
+	</tr>
+    </thead>
+    <tbody>
+	{% for task in tasks %}
+	<tr>
+	    <td> {{ task.name|linebreaks }} </td>
+	    <td> {{ task.description|linebreaks }} </td>
+        <td> {{ task.task_type|linebreaks }} </td>
+        <td> {{ task.status|linebreaks }} </td>
+        <td> {{ task.priority|linebreaks }} </td>
+        <td><a href="{% url 'task_detail' pk=task.pk %}" class="card-link">Show</a></td>
+        <td><a href="{% url 'task_update' pk=task.pk %}" class="card-link">Edit</a></td>
+        
+	</tr>
+	{% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

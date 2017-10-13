@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<center><b>Create a new Task:</b></center>
+<div class="container">
+<form role="form" action="" method="post">
+    
+    {% csrf_token %}
+ <input type="hidden" name="project_id" value="{{ request.get_full_path }}">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="inlineFormCustomSelectPref">Task Name:</label>
+      <div class="col-sm-7">
+        {{form.name}}
+      </div>
+    </div>
+    <div class="form-group row">
+    <label class="col-sm-3">Task Description</label>
+    <div class="col-sm-7">
+    
+   {{form.description}}
+  </div>
+  </div>
+    <div class="form-group row">
+    <label class="mr-sm-3" for="inlineFormCustomSelectPref">Task Type</label>
+      <select class="custom-select mb-3 mr-sm-3 mb-sm-0" id="inlineFormCustomSelectPref" name="task_type">
+        <option selected>Task</option>
+        <option value="Story">Story</option>
+        <option value="Epic">Epic</option>
+        <option value="Bug">Bug</option>
+      </select>
+      </div>
+    </div>
+    <div class="form-group row">
+    <label class="mr-sm-3" for="inlineFormCustomSelectPref">Task Status</label>
+      <select class="custom-select mb-3 mr-sm-3 mb-sm-0" id="inlineFormCustomSelectPref" name="status">
+        <option selected value="To Do">To Do</option>
+        <option value="Progress">Progress</option>
+        <option value="Completed">Completed</option>
+      </select>
+    </div>
+    <div class="form-group row">
+    <label class="mr-sm-3" for="inlineFormCustomSelectPref">Priority</label>
+      <select class="custom-select mb-3 mr-sm-3 mb-sm-0" id="inlineFormCustomSelectPref" name="priority">
+        <option selected value="Low">Low</option>
+        <option value="Medium" >Medium</option>
+        <option value="High">High</option>
+      </select>
+    </div>
+    
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+</div>
+
+{% endblock content %}

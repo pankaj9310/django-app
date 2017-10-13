@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Projects{% endblock title %}
+{% block content %}
+{% for task in object_list %}
+<div class="card project">
+    <div class="card-block">
+	<h4 class="card-title"><a href="{% url 'task_detail' pk=task.id %}">{{ task.name }}</a></h4>
+	<p class="card-text">{{ task.description }}</p>
+	<p class="card-text">{{ task.task_type }}</p>
+	<p class="card-text">{{ task.status }}</p>
+	<p class="card-text">{{ task.priority }}</p>
+	<a href="{% url 'task_update' pk=task.id %}" class="card-link">edit</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}
