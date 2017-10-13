@@ -11,6 +11,19 @@ Moved to settings_.
 
 Basic Commands
 --------------
+Setting project on local
+^^^^^^^^^^^^^^^^^^^^^
+    set database name and password in config/settings/base.py @line 128
+    set email id and password in config/settings/base.py @line 34, 35
+	$ sudo apt-get install python python-dev python-pip virtualenv
+	$ virtualenv venv_nimoy
+	$ source venv_nimoy/bin/activate
+	$ pip install -r requirements/local.txt
+	$ python manage.py makemigrations
+	$ python manage.py migrate
+	$ python manage.py createsuperuser 
+	$ python manage.py runserver
+
 
 Setting Up Your Users
 ^^^^^^^^^^^^^^^^^^^^^
