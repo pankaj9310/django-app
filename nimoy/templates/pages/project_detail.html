@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
+
+
 {% block content %}
 <p><b>Project Name: </b>{{ object.name }}</p>
 <p><b>Porject Type:</b>{{ object.project_type }}
 <p><b>Project Details: </b>{{ object.description }}</p>
+<p><b>Project Manager: </b>{{ object.owner }}</p>
 <a class="nav-link" href="{% url 'add_task' pk=object.id %}">Add Task</a>
 <table class="tasks table table-striped">
     <thead class="thead-inverse">
@@ -29,7 +32,33 @@
         <td><a href="{% url 'task_update' pk=task.pk %}" class="card-link">Edit</a></td>
         
 	</tr>
+
 	{% endfor %}
     </tbody>
 </table>
+<canvas id="pie-chart" width="800" height="450"></canvas>
+
+
 {% endblock content %}
+  {% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script>
+	new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels:  ['To Do', 'Progress','Completed'],
+      datasets: [{
+        label: "Project task details",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        data: {{data_values}}
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Project task details for {{object.name}}'
+      }
+    }
+});
+</script>
+{% endblock extra_js %}
