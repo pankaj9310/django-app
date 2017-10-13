@@ -13,8 +13,9 @@ Basic Commands
 --------------
 Setting project on local
 ^^^^^^^^^^^^^^^^^^^^^
-    set database name and password in config/settings/base.py @line 128
-    set email id and password in config/settings/base.py @line 34, 35:
+* set database name and password in config/settings/base.py @line 128.
+* set email id and password in config/settings/base.py @line 34, 35::
+
 	$ sudo apt-get install python python-dev python-pip virtualenv
 	$ virtualenv venv_nimoy
 	$ source venv_nimoy/bin/activate
