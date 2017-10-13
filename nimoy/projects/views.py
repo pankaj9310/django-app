@@ -50,9 +50,10 @@ class ProjectDetails(FormMixin, DetailView):
     def _get_graph_data(self):
         status_data = {'To Do':0, 'Progress':0, 'Completed':0}
         tasks = Task.objects.filter(project=self.object.pk)
-        for x in tasks:
-            status_data[x.status] += 1
-        return status_data
+        for task in tasks:
+            status_data[task.status] += 1
+        data_values = [status_data['To Do'], status_data['Progress'], status_data['Completed']]
+        return data_values
     def get_success_url(self):
         return reverse('project_detail', kwargs={'pk': self.object.pk})
 
@@ -60,5 +61,5 @@ class ProjectDetails(FormMixin, DetailView):
         context = super(ProjectDetails, self).get_context_data(**kwargs)
         context['form'] = self.form_class(initial={'project': self.object.pk})
         context['tasks'] = self._get_tasks()
-        context['data_values'] = self._get_graph_data().values()
+        context['data_values'] = self._get_graph_data()
         return context

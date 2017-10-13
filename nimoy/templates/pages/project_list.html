@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+
 {% block title %}Projects{% endblock title %}
 {% block content %}
+<a href="{% url 'add-project' %}" class="card-link">Add Project</a>
 {% for project in object_list %}
 <div class="card project">
     <div class="card-block">

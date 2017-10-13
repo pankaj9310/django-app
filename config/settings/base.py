@@ -336,5 +336,5 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.load_extra_data',
     'social.pipeline.user.user_details'
 )
-SOCIAL_AUTH_FACEBOOK_KEY = '1759638294299566'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'b3397c50c6695234f01e48820cfc02c6'
+SOCIAL_AUTH_FACEBOOK_KEY = 'facebook_key'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'facebook_secret'

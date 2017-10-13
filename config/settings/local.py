@@ -31,8 +31,8 @@ SECRET_KEY = env('DJANGO_SECRET_KEY', default='3`TB^,kVZ|Aj.9X]@IfaAs.GSj)QnP2AP
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'pankaj@skaas.guru'
-EMAIL_HOST_PASSWORD = 'Pankaj1@'
+EMAIL_HOST_USER = 'email-id'
+EMAIL_HOST_PASSWORD = 'password'
 
 # EMAIL_HOST = 'localhost'
 # EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND',
