@@ -5,6 +5,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 
 from nimoy.users.views import role_assign, users_list, user_profile, user_update
 from allauth.account.views import confirm_email as allauthemailconfirmation

@@ -11,7 +11,8 @@ class Task(models.Model):
     assignee = models.ForeignKey(settings.AUTH_USER_MODEL)
     task_type = models.CharField(max_length=50, blank=True, null=True)
     status = models.CharField(max_length=50, blank=True, null=True)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tasks', on_delete=models.CASCADE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tasks',
+                              on_delete=models.CASCADE)
     priority = models.CharField(max_length=50, blank=True, null=True)
     due = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -26,4 +27,3 @@ class Task(models.Model):
     def __str__(self):
         if self.name:
             return self.name
-        return '%s Task' % (self.task.name)

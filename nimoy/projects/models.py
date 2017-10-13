@@ -7,7 +7,8 @@ class Project(models.Model):
     name = models.CharField(max_length=160)
     description = models.TextField()
     project_type = models.CharField(null=True, max_length=160)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='projects', on_delete=models.CASCADE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='projects',
+                              on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name

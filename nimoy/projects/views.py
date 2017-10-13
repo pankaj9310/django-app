@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.http import JsonResponse
+from django.urls import reverse
 from .models import Project
 from .forms import ProjectForm
 from nimoy.tasks.models import Task
@@ -7,27 +6,24 @@ from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.edit import FormMixin
 from django.views.generic.list import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from rolepermissions.mixins import HasPermissionsMixin
-from rolepermissions.checkers import has_permission, has_role
-
-
-class CreateProject(CreateView):
+class CreateProject(LoginRequiredMixin, CreateView):
     template_name = 'pages/project.html'
     model = Project
     fields = ['name', 'description', 'project_type']
     success_url = '/'
-    
+
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super(CreateProject, self).form_valid(form)
 
-class ProjectUpdate(UpdateView):
+class ProjectUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'pages/project.html'
     model = Project
     fields = ['name', 'description', 'project_type']
     success_url = '/'
-    
+
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super(ProjectUpdate, self).form_valid(form)
@@ -45,7 +41,8 @@ class ProjectDetails(FormMixin, DetailView):
     def _get_tasks(self):
         tasks = Task.objects.filter(project=self.object.pk)
         return [{'name': x.name, 'description': x.description, 'assignee': x.assignee,
-                 'task_type': x.task_type, 'status': x.status, 'owner': x.owner, 'priority': x.priority, 'pk': x.id} for x in tasks]
+                 'task_type': x.task_type, 'status': x.status, 'owner': x.owner,
+                 'priority': x.priority, 'pk': x.id} for x in tasks]
 
     def _get_graph_data(self):
         status_data = {'To Do':0, 'Progress':0, 'Completed':0}
