@@ -1,4 +1,5 @@
 from django.urls import reverse
+from django.core.urlresolvers import reverse_lazy
 from .models import Project
 from .forms import ProjectForm
 from nimoy.tasks.models import Task
@@ -12,7 +13,7 @@ class CreateProject(LoginRequiredMixin, CreateView):
     template_name = 'pages/project.html'
     model = Project
     fields = ['name', 'description', 'project_type']
-    success_url = '/'
+    success_url = reverse_lazy('project_list')
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
@@ -22,8 +23,8 @@ class ProjectUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'pages/project.html'
     model = Project
     fields = ['name', 'description', 'project_type']
-    success_url = '/'
-
+    def get_success_url(self):
+        return reverse('project_detail', kwargs={'pk': self.object.pk})
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super(ProjectUpdate, self).form_valid(form)

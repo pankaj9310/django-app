@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p><b>Name: </b>{{ object.name }}</p>
+<p><b>Project Name: </b>{{ object.project }}</p>
+<p><b>Task Name: </b>{{ object.name }}</p>
 <p><b>Description: </b>{{ object.description }}</p>
 <p><b>Task Type: </b>{{ object.task_type }}</p>
 <p><b>Status: </b>{{ object.status }}</p>
 <p><b>Priority: </b>{{ object.priority }}</p>
+<p><b>Assign to: </b>{{ object.owner }}</p>
+<p><b>Created At: </b>{{ object.created }}</p>
+<p><b>Updated At: </b>{{ object.updated }}</p>
 
 {% endblock content %}
